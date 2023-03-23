@@ -1,0 +1,32 @@
+.socialList {
+  display: flex;
+}
+.socialItem {
+  cursor: pointer;
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+}
+
+.socialIcon {
+  fill: #e4d5e9;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    fill: #bba0c5;
+  }
+}
+.socialIconEmail {
+  display: flex;
+  width: 28px;
+  height: 41px;
+  color: #000000;
+  border-radius: 500px;
+  padding: 5px 11px;
+  background-color: #e4d5e9;
+  &:hover,
+  &:focus {
+    background-color: #bba0c5;
+  }
+}

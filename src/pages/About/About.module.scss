@@ -1,0 +1,132 @@
+.aboutPage {
+  // position: relative;
+  // padding-top: 200px;
+  background: #190729;
+   height: 100vh;
+  // overflow-x: hidden;
+}
+
+.imgSlidesWrapper{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   height: 100vh;
+// padding-top: 200px;
+   background: #190729;
+}
+
+
+.slideWrapper {
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+}
+
+.slideTitle {
+  font-family: 'Audiowide';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 76px;
+  letter-spacing: 0.01em;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #bba0c5;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #cc00ff;
+  text-stroke-width: 1px;
+  text-stroke-color: #cc00ff;
+}
+
+.slideText {
+  font-family: 'Mada';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 46px;
+  letter-spacing: 0.01em;
+  max-width: 605px;
+  color: #e4d5e9;
+}
+
+.thirdSlideText {
+  max-width: 705px;
+  text-align: center;
+}
+.slideDropDownTextWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.slideDropDownText {
+  font-family: 'Mada';
+  font-style: normal;
+  max-width: 665px;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 39px;
+  letter-spacing: 0.01em;
+  margin-left: 40px;
+  color: #cec5d1;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+.slideDropDownIcon {
+  cursor: pointer;
+}
+.slideDropDownIconUp {
+  rotate: 180deg;
+}
+
+
+.skillsList{
+   display: flex;
+   margin-top: 40px;
+}
+
+.skillsItem{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   &:not(:last-child){
+      margin-right: 90px;
+   }
+}
+.skillsTitle{
+   font-family: 'Mada';
+font-style: normal;
+font-weight: 500;
+font-size: 35px;
+line-height: 46px;
+letter-spacing: 0.01em;
+
+color: #E4D5E9;
+}
+
+.aboutFooter {
+  padding: 0 30px 30px 30px;
+  margin-top: 80px;
+}
+
+.footerSlideStyle {
+  position: absolute;
+  
+  bottom: 30px !important;
+  left: 50% !important;
+  transform: translate(-50%, 0) !important;
+}
+
+.aboutFooter {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: absolute;
+  width: 93%;
+  bottom: 0px;
+  left: 33px;
+  
+}

@@ -1,0 +1,23 @@
+.skillsList{
+   display: flex;
+   margin-top: 40px;
+}
+
+.skillsItem{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   &:not(:last-child){
+      margin-right: 90px;
+   }
+}
+.skillsTitle{
+   font-family: 'Mada';
+font-style: normal;
+font-weight: 500;
+font-size: 35px;
+line-height: 46px;
+letter-spacing: 0.01em;
+
+color: #E4D5E9;
+}

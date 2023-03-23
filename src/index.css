@@ -1,8 +1,40 @@
-body {
+@import-normalize; /* bring in normalize.css styles */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Literata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mada:wght@500&display=swap');
+/* /////////// resets //////////// */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+tr,
+td,
+table {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ///////////// body //////////////////*/
+
+body {
+  /* background: #190729; */
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Audiowide','Mada',
+    'Libre Baskerville', 'Literata', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +42,48 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+/* ///////////// current page //////////////////*/
+
+.navPage.active {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e4d5e9;
+}
+
+/* ///////////// rain animation //////////////////*/
+
+#Rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 30vw;
+  height: 43vh;
+  filter: blur(2px);
+}
+
+.drop {
+  background: rgb(177, 176, 176);
+  width: 1px;
+  height: 80px;
+  position: absolute;
+  transform: translate(0, -100%);
+  rotate: 10deg;
+  animation: falling 2s linear infinite;
+  animation-fill-mode: forwards;
+}
+
+@media (max-width: 600px) {
+  #Rain {
+    height: 105vh;
+  }
+}
+
+@keyframes falling {
+  0% {
+    transform: translate(0, -100%);
+  }
+  100% {
+    transform: translate(0, calc(100% + 1000px));
+  }
 }

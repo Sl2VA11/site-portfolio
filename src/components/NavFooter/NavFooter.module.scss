@@ -1,0 +1,34 @@
+.footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: absolute;
+  // width: 97%;
+  bottom: 25px;
+  left: 33px;
+  
+}
+
+
+.navList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navItem {
+ 
+  &:not(:last-child) {
+    margin-right: 90px;
+  }
+}
+.navLink {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 46px;
+  letter-spacing: 0.1em;
+
+  color: #e4d5e9;
+
+}
