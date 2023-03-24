@@ -8,7 +8,8 @@ import { Routes, Route } from 'react-router-dom';
 export function PageRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Main />} />
+      
+      <Route path="/" exact element={<Main />} />
       <Route path="/about" element={<About />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/skills" element={<Skills />} />

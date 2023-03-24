@@ -7,6 +7,8 @@ export function About() {
   gsap.registerPlugin(ScrollTrigger);
 
   const sectionRef = useRef(null);
+  const containerRef = useRef(null);
+  const triggerRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState({
     title: "ABOUT ME",
     text: "I'm a Front End Developer proficient in HTML, CSS, JavaScript, and React. I develop responsive web interfaces, optimize",
@@ -15,160 +17,84 @@ export function About() {
 
   useEffect(() => {
     const Elem = sectionRef.current;
+    if (!Elem) return;
     let t2;
-    const initAnimations = () => {
-      const updateText = (title, text, currentNum) => {
-        const textObj = {
-          title,
-          text,
-          currentNum,
-        };
-
-        setCurrentSlide(textObj);
+    const updateText = (title, text, currentNum) => {
+      const textObj = {
+        title,
+        text,
+        currentNum,
       };
 
-      t2 = gsap.to(Elem, {
-        scrollTrigger: {
-          trigger: Elem,
-          start: `top top`,
-          end: `+=${Elem.offsetWidth + 800}`,
-          scrub: 1,
-          pin: true,
-          pinSpacing: true,
-        },
-      });
-
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: Elem,
-            start: "top top",
-            end: `+=${Elem.offsetWidth + 800}`,
-            scrub: 1,
-          },
-        })
-        .to(Elem, {
-          onStart: updateText,
-
-          onStartParams: [
-            "ABOUT ME",
-            "I'm a Front End Developer proficient in HTML, CSS, JavaScript, and React. I develop responsive web interfaces, optimize",
-            1,
-          ],
-          onReverseComplete: updateText,
-          onReverseCompleteParams: [
-            "ABOUT ME",
-            "I'm a Front End Developer proficient in HTML, CSS, JavaScript, and React. I develop responsive web interfaces, optimize",
-            1,
-          ],
-        })
-        .to(Elem, {
-          onStart: updateText,
-
-          onStartParams: [
-            "ABOUT ME",
-            "I'm a Front End Developer proficient in HTML, CSS, JavaScript, and React. I develop responsive web interfaces, optimize",
-            1,
-          ],
-          onReverseComplete: updateText,
-          onReverseCompleteParams: [
-            "ABOUT ME",
-            "I'm a Front End Developer proficient in HTML, CSS, JavaScript, and React. I develop responsive web interfaces, optimize",
-            1,
-          ],
-        })
-        .to(Elem, {
-          onStart: updateText,
-
-          onStartParams: ["Skills", "", 2],
-          onReverseComplete: updateText,
-          onReverseCompleteParams: ["Skills", "", 2],
-        })
-        .to(Elem, {
-          onStart: updateText,
-
-          onStartParams: ["Skills", "", 2],
-          onReverseComplete: updateText,
-          onReverseCompleteParams: ["Skills", "", 2],
-        })
-        .to(Elem, {
-          onStart: updateText,
-
-          onStartParams: [
-            "WORK EXPERIENCE",
-            "Focus Digital Syndicate (Barcelona, Spain)",
-            3,
-          ],
-          onReverseComplete: updateText,
-          onReverseCompleteParams: [
-            "WORK EXPERIENCE",
-            "Focus Digital Syndicate (Barcelona, Spain)",
-            3,
-          ],
-        })
-        .to(Elem, {
-          onStart: updateText,
-
-          onStartParams: [
-            "WORK EXPERIENCE",
-            "Focus Digital Syndicate (Barcelona, Spain)",
-            3,
-          ],
-          onReverseComplete: updateText,
-          onReverseCompleteParams: [
-            "WORK EXPERIENCE",
-            "Focus Digital Syndicate (Barcelona, Spain)",
-            3,
-          ],
-        })
-
-        .to(Elem, {
-          onStart: updateText,
-
-          onStartParams: [
-            "IT-EDUCATION",
-            "IT School GoIT (Kyiv) - FullStack Developer",
-            4,
-          ],
-          onReverseComplete: updateText,
-          onReverseCompleteParams: [
-            "IT-EDUCATION",
-            "IT School GoIT (Kyiv) - FullStack Developer",
-            4,
-          ],
-        })
-        .to(Elem, {
-          onStart: updateText,
-
-          onStartParams: [
-            "IT-EDUCATION",
-            "IT School GoIT (Kyiv) - FullStack Developer",
-            4,
-          ],
-          onReverseComplete: updateText,
-          onReverseCompleteParams: [
-            "IT-EDUCATION",
-            "IT School GoIT (Kyiv) - FullStack Developer",
-            4,
-          ],
-        });
+      setCurrentSlide(textObj);
     };
 
-    const timeoutId = setTimeout(initAnimations, 100);
+    t2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: Elem,
+        start: "top top",
+        end: `+=${Elem.offsetHeight * 4}`,
+        scrub: 1,
+        pin: true,
+        pinReparent: false,
+      },
+    });
+    const sections = [
+      {
+        title: "ABOUT ME",
+        text: "I'm a Front End Developer proficient in HTML, CSS, JavaScript, and React. I develop responsive web interfaces, optimize",
+        currentNum: 1,
+      },
+      {
+        title: "Skills",
+        text: "",
+        currentNum: 2,
+      },
+      {
+        title: "WORK EXPERIENCE",
+        text: "Focus Digital Syndicate (Barcelona, Spain)",
+        currentNum: 3,
+      },
+      {
+        title: "IT-EDUCATION",
+        text: "IT School GoIT (Kyiv) - FullStack Developer",
+        currentNum: 4,
+      },
+      {
+        title: "IT-EDUCATION",
+        text: "IT School GoIT (Kyiv) - FullStack Developer",
+        currentNum: 4,
+      },
+    ];
+
+    sections.forEach((section) => {
+      t2.add(
+        () => updateText(section.title, section.text, section.currentNum),
+        `+=${Elem.offsetHeight}`
+      );
+    });
 
     return () => {
-      clearTimeout(timeoutId);
-      t2.revert();
+      if (t2) {
+        t2.kill();
+      }
+      if (t2.scrollTrigger) {
+        t2.scrollTrigger.kill();
+      }
+      gsap.set(containerRef.current, { clearProps: "all" });
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [sectionRef]);
 
   return (
-    <AboutMarkup
-      title={currentSlide.title}
-      text={currentSlide.text}
-      number={currentSlide.currentNum}
-      sectionRef={sectionRef}
-    />
+    <div ref={containerRef}>
+      <div ref={sectionRef}>
+        <AboutMarkup
+          title={currentSlide.title}
+          text={currentSlide.text}
+          number={currentSlide.currentNum}
+          sectionRef={sectionRef}
+        />
+      </div>
+    </div>
   );
 }
